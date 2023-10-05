@@ -10,13 +10,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "User")
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class UserEntity extends BaseEntity{	
 	@Column(nullable = false, unique = true)
 	private String email;

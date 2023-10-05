@@ -16,7 +16,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Component
-public class JwtTokenUtil {
+public class JwtUtils {
 
 	@Value("${jwt.secret}")
 	private String jwtSecretKey;

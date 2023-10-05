@@ -1,7 +1,10 @@
 package com.home.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -24,19 +27,17 @@ public abstract class BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
 	@CreatedBy
 	private String createdBy;
 	
-	@Column
-	@CreatedDate
-	private Date createdAt;
+	@CreationTimestamp
+	@Column(columnDefinition = "TIMESTAMP")
+	private Timestamp createdAt;
 	
-	@Column
 	@LastModifiedBy
 	private String updateBy;
 	
-	@Column
-	@LastModifiedDate
-	private Date updateAt;
+	@Column(columnDefinition = "TIMESTAMP")
+	@UpdateTimestamp
+	private Timestamp updateAt;
 }

@@ -19,8 +19,8 @@ import com.home.utils.JwtTokenUtil;
 @RequestMapping("/auth")
 public class authController {
 	
-//	@Autowired
-//    private UserService userService;
+	@Autowired
+    private UserService userService;
 	
 //	@Autowired
 //    private JwtTokenUtil jwtTokenUtil;
@@ -28,10 +28,10 @@ public class authController {
 //	@Autowired
 //    private AuthenticationManager authenticationManager;
 	
-//	@PostMapping("/regiester")
-//    public String addNewUser(@RequestBody CreateUserRequest createUserRequest) {
-//        return userService.createUser(createUserRequest);
-//    }
+	@PostMapping("/regiester")
+    public String addNewUser(@RequestBody CreateUserRequest createUserRequest) {
+        return userService.createUser(createUserRequest);
+    }
 	
 //	@PostMapping("/login")
 //    public String authenticateAndGetToken(@RequestBody LoginRequest loginRequest) {
