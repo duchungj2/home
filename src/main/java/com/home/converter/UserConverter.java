@@ -4,10 +4,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import com.home.dto.request.CreateUserRequest;
 import com.home.entity.UserEntity;
 
+@Component
 public class UserConverter {
 	
 	@Autowired
