@@ -21,7 +21,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-public class authController {
+public class AuthController {
 	
 	@Autowired
     private UserService userService;
@@ -34,10 +34,8 @@ public class authController {
 	
 	@PostMapping("/signup")
 	@ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> addNewUser(@RequestBody @Valid CreateUserRequest createUserRequest) {
-		System.out.println(createUserRequest);
-		return new ResponseEntity<>(HttpStatus.OK);
-//        return userService.createUser(createUserRequest);
+    public void addNewUser(@RequestBody @Valid CreateUserRequest createUserRequest) {
+        userService.createUser(createUserRequest);
     }
 	
 //	@PostMapping("/login")
