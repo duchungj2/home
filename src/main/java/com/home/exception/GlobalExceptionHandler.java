@@ -28,26 +28,12 @@ public class GlobalExceptionHandler {
 	    });
 	    return errors;
 	}
-	
-//	@ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<Map<String, Map<String, String>>> handleValidationErrors(MethodArgumentNotValidException ex) {
-//		Map<String, String> errors = new HashMap<String, String>();
-//        ex.getBindingResult().getFieldErrors()
-//                .stream().forEach(fieldError -> errors.put(fieldError.getField(), fieldError.getDefaultMessage()));
-//        return new ResponseEntity<>(getErrorsMap(errors), ex.getStatusCode());
-//    }
 
-    private Map<String, Map<String, String>> getErrorsMap(Map<String, String> errors) {
-        Map<String, Map<String, String>> errorResponse = new HashMap<>();
-        errorResponse.put("errors", errors);
-        return errorResponse;
-    }
-
-	// Nên bắt cả Exception.class
+	// Handle Exception.class
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleUnwantedException(Exception e) {
 		// Log lỗi ra và ẩn đi message thực sự (xem phần 3.2)
-//		e.printStackTrace(); // Thực tế người ta dùng logger
+		e.printStackTrace(); // Thực tế người ta dùng logger
 		return ResponseEntity.status(500).body("Unknow error");
 	}
 }

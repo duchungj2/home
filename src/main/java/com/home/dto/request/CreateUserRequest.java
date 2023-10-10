@@ -19,16 +19,21 @@ public class CreateUserRequest {
 	@Size(max = 25, message = "password contains maximum 25 characters")
 	private String password;
 	
+	@NotBlank(message = "Please enter phone number")
 	@Pattern(regexp = "^((84|0)[3|5|7|8|9])+([0-9]{8})\\b", message = "Phone number is not in correct format")
 	private String phoneNumber;
 	
+	@NotBlank(message = "Please enter first name")
 	@Size(min = 1, max = 50, message = "First name must be of 1 to 50 characters")
 	@Pattern(regexp = "^[a-zA-Z]*$",
             message = "First name cannot contain special characters")
 	private String firstName;
 	
+	@NotBlank(message = "Please enter last name")
 	@Size(min = 1, max = 50, message = "Last name must be of 1 to 50 characters")
 	@Pattern(regexp = "^[a-zA-Z]*$",
             message = "Last name cannot contain special characters")
 	private String lastName;
+	
+	private boolean enabled = true;
 }

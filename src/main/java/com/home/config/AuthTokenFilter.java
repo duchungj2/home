@@ -7,12 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.home.dto.UserDTO;
 import com.home.service.UserService;
+import com.home.service.impl.UserDetailsServiceImpl;
 import com.home.utils.JwtUtils;
 
 import jakarta.servlet.FilterChain;
@@ -28,7 +30,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	private JwtUtils jwtUtils;
 
 	@Autowired
-	private UserService userService;
+	  private UserDetailsServiceImpl userDetailsService;
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
@@ -44,7 +46,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 		}
 
 		if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDTO userDTO = userService.loadUserByEmail(email);
+			UserDTO userDTO = (UserDTO) userDetailsService.loadUserByUsername(email);
 			if (jwtUtils.validateToken(token, userDTO.getEmail())) {
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDTO,
 						null, userDTO.getAuthorities());
