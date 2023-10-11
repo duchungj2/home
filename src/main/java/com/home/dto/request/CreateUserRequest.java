@@ -35,5 +35,5 @@ public class CreateUserRequest {
             message = "Last name cannot contain special characters")
 	private String lastName;
 	
-	private boolean enabled = true;
+	private boolean enabled;
 }

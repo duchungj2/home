@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 	public void createUser(CreateUserRequest createUserRequest) {
 
 		if (userRepository.existsByEmail(createUserRequest.getEmail())) {
-			throw new UserAlreadyExistsException("User already exists!");
+			throw new UserAlreadyExistsException("Email already exists!");
 		}
 
 		UserEntity user = userConverter.convertToUserEntity(createUserRequest);

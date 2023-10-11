@@ -25,20 +25,14 @@ public class JwtUtils {
 	private int jwtExpired;
 
 	public String generateToken(String email) {
-		Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, email);
-	}
-	
-	private String createToken(Map<String, Object> claims, String email) {
 		Date now = new Date(System.currentTimeMillis());
         Date expiration  = new Date(System.currentTimeMillis() + jwtExpired);
         return Jwts.builder()
-                .setClaims(claims)
                 .setSubject(email)
                 .setIssuedAt(now)
                 .setExpiration(expiration)
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
-    }
+	}
 	
 	private Key getSignKey() {
         byte[] keyBytes= Decoders.BASE64.decode(jwtSecretKey);
