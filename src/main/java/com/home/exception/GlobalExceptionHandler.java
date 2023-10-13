@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -35,6 +36,22 @@ public class GlobalExceptionHandler {
 	public Map<String, String> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
 		Map<String, String> errors = new HashMap<>();
 		errors.put("email", ex.getMessage());
+		return errors;
+	}
+	
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	@ExceptionHandler(BadCredentialsException.class)
+	public Map<String, String> handleLoginFailedException(BadCredentialsException ex) {
+		Map<String, String> errors = new HashMap<>();
+		errors.put("otherError", "Email or password invalid");
+		return errors;
+	}
+	
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	@ExceptionHandler(RefreshTokenException.class)
+	public Map<String, String> handleUserAlreadyExistsException(RefreshTokenException ex) {
+		Map<String, String> errors = new HashMap<>();
+		errors.put("requestRefreshToken", ex.getMessage());
 		return errors;
 	}
 

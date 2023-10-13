@@ -2,6 +2,8 @@ package com.home.dto;
 
 import java.sql.Timestamp;
 
+import com.home.dto.UserDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

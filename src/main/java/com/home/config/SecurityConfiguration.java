@@ -37,8 +37,6 @@ public class SecurityConfiguration {
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
 
-	
-	
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -62,7 +60,7 @@ public class SecurityConfiguration {
 		http.csrf(csrf -> csrf.disable())
 				.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/**").permitAll().anyRequest().authenticated());
 
 		http.authenticationProvider(authenticationProvider());
 

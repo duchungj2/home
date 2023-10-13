@@ -13,6 +13,8 @@ import com.home.entity.UserEntity;
 public interface RefreshTokenRepository extends JpaRepository<RefreshTokenEntity, Long> {
 	Optional<RefreshTokenEntity> findByToken(String token);
 
-  @Modifying
-  int deleteByUser(UserEntity user);
+	@Modifying
+	int deleteByUser(UserEntity user);
+	
+	RefreshTokenEntity findByUserId(Long userId);
 }

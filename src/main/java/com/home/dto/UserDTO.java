@@ -16,6 +16,8 @@ import lombok.Getter;
 public class UserDTO implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private Long id;
 
 	private String email;
 	
@@ -33,6 +35,7 @@ public class UserDTO implements UserDetails {
 	private List<GrantedAuthority> authorities; 
 
 	public UserDTO(UserEntity userEntity) { 
+		id = userEntity.getId();
 		email = userEntity.getEmail(); 
 		password = userEntity.getPassword();
 		enabled = userEntity.isEnabled();
